@@ -10,29 +10,28 @@ import com.deepdroid.coretablayout.CoreTabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity {
     private static final String ITEM_ID_START = "i0";
     private static final String ITEM_ID_MIDDLE = "i1";
     private static final String ITEM_ID_END = "i2";
 
-    private CoreTabLayout coreTabLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
 
-        coreTabLayout = (CoreTabLayout) findViewById(R.id.mainCoreTabLayout);
-        generateTestItems();
+        setTestItems((CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith1Item), 1);
+        setTestItems((CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith2Items), 2);
+        setTestItems((CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith3Items), 3);
+        setTestItems((CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith4Items), 4);
     }
 
-    private void generateTestItems() {
+    private void setTestItems(CoreTabLayout coreTabLayout, int itemCount) {
         List<CoreTabItem> itemList = new ArrayList<>();
-        itemList.add(new CoreTabItem(ITEM_ID_START, "Item\nStart"));
-        itemList.add(new CoreTabItem(ITEM_ID_MIDDLE, "Item\nMiddle0"));
-        itemList.add(new CoreTabItem(ITEM_ID_MIDDLE, "Item\nMiddle1"));
-        itemList.add(new CoreTabItem(ITEM_ID_END, "Item\nEnd"));
-        coreTabLayout.setItems(itemList, 0);
+        for (int x = 0; x < itemCount; x++) {
+            itemList.add(new CoreTabItem(x + "", "Item\nNo:" + x));
+        }
+        coreTabLayout.setItems(itemList, itemCount - 1);
         coreTabLayout.setItemSelectionListener(itemSelectionListener);
     }
 

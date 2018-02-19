@@ -10,6 +10,7 @@ public class CoreTabItem {
 
     public String itemText;
     public String itemId;
+    boolean isSelected;
     int itemIndex;
     CoreTabItemType coreTabItemType;
     TextView passiveItemTv;
@@ -20,7 +21,11 @@ public class CoreTabItem {
         this.itemText = itemText;
     }
 
-    public void setItemView(TextView itemView, boolean isPassive) {
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    void setItemView(TextView itemView, boolean isPassive) {
         if (isPassive) {
             passiveItemTv = itemView;
         } else {

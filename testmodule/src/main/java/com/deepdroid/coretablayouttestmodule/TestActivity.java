@@ -51,7 +51,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     // # OPTIONAL - EXAMPLE CODES : Customize tab layout visual configuration.
-    private void modifyTabLayoutConfigProgrammatically(CoreTabLayout tabLayoutWithThreeItems) {
+    private void modifyTabLayoutConfigProgrammatically(CoreTabLayout coreTabLayout) {
         // You can use default constructor & then change the config values one by one.
         // CoreTabConfig customTabConfig = new CoreTabConfig(getResources());
 
@@ -63,11 +63,11 @@ public class TestActivity extends AppCompatActivity {
                 , new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_end_item_drawable, R.drawable.core_tab_layout_selected_end_item_drawable)
                 , getColorWithId(R.color.customPassiveItemFilterColor), getColorWithId(R.color.customSelectedItemFilterColor)
                 , getColorWithId(R.color.customPassiveItemTextColor), getColorWithId(R.color.customSelectedItemTextColor)
-                , getDimenWith(R.dimen.customPassiveTextSize), getDimenWith(R.dimen.tabLayoutSelectedTextSize)
+                , getDimenWith(R.dimen.customPassiveTextSize), getDimenWith(R.dimen.customSelectedTextSize)
         );
 
         // Apply your new config values.
-        tabLayoutWithThreeItems.setTabConfig(customTabConfig, true);
+        coreTabLayout.setTabConfig(customTabConfig, true);
     }
 
     // # OPTIONAL - EXAMPLE CODES : Item selection listener

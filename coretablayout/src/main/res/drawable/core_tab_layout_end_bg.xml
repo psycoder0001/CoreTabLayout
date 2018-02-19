@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:left="-1dp">
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2dp"
+                android:color="@color/tabLayoutPassiveItemBgColor"/>
+            <size android:height="@dimen/tabLayoutItemHeight"/>
+            <corners
+                android:bottomRightRadius="@dimen/tabLayoutItemRadius"
+                android:topRightRadius="@dimen/tabLayoutItemRadius"
+                />
+        </shape>
+    </item>
+</layer-list>

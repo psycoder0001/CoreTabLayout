@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="tabLayoutPassiveTextSize">14sp</dimen>
+    <dimen name="tabLayoutSelectedTextSize">15sp</dimen>
+    <dimen name="tabLayoutItemHeight">50dp</dimen>
+    <dimen name="tabLayoutItemRadius">50dp</dimen>
+</resources>

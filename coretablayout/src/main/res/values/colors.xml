@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tabLayoutPassiveItemBgColor">#225522</color>
+    <color name="tabLayoutSelectedItemBgColor">#22AA22</color>
+    <color name="tabLayoutPassiveItemTextColor">#AAAAAA</color>
+    <color name="tabLayoutSelectedItemTextColor">#f3f3f3</color>
+    <color name="tabLayoutPassiveItemFilterColor">@null</color>
+    <color name="tabLayoutSelectedItemFilterColor">@null</color>
+</resources>

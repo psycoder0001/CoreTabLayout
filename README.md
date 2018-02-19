@@ -49,7 +49,7 @@ II.B. Set the items in your java codes.
 ```
 
 ### III. How to customize?
-III.A. Through the xml attributes
+III.A. Customize through the xml attributes
 ```xml
     <com.deepdroid.coretablayout.CoreTabLayout
         android:id="@+id/testCoreTabLayout"
@@ -69,7 +69,7 @@ III.A. Through the xml attributes
     <!--app:selectedEndItemDrawable="@drawable/yourDrawable"-->
 ```
 
-III.B. Through the java codes
+III.B. Customize through the java codes
 ```java
     private void modifyTabLayoutConfigProgrammatically(CoreTabLayout coreTabLayout) {
         // You can use default constructor & then change the config values one by one.
@@ -91,3 +91,23 @@ III.B. Through the java codes
     }
 ```
 
+III.C. Customize by overriding xml values
+```xml
+    <!--Push next lines in your colors.xml-->
+    <!--Override tabLayout default color values-->
+    <color name="tabLayoutPassiveItemBgColor">#DD8833</color>
+    <color name="tabLayoutSelectedItemBgColor">#EE8833</color>
+    <color name="tabLayoutPassiveItemTextColor">#DD8833</color>
+    <color name="tabLayoutSelectedItemTextColor">#CCEECC</color>
+    <!--
+    <color name="tabLayoutPassiveItemFilterColor">#225522</color>
+    <color name="tabLayoutSelectedItemFilterColor">#22AA22</color>
+    -->
+
+    <!--Push next lines in your dimens.xml-->
+    <!--Override tabLayout default dimen values-->
+    <dimen name="tabLayoutPassiveTextSize">9sp</dimen>
+    <dimen name="tabLayoutSelectedTextSize">10sp</dimen>
+    <dimen name="tabLayoutItemHeight">40dp</dimen>
+    <dimen name="tabLayoutItemRadius">50dp</dimen>
+```

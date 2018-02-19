@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Override tabLayout default dimen values-->
+    <dimen name="tabLayoutPassiveTextSize">9sp</dimen>
+    <dimen name="tabLayoutSelectedTextSize">10sp</dimen>
+    <dimen name="tabLayoutItemHeight">40dp</dimen>
+    <dimen name="tabLayoutItemRadius">50dp</dimen>
+
+    <dimen name="customPassiveTextSize">10sp</dimen>
+    <dimen name="customSelectedTextSize">12sp</dimen>
+</resources>

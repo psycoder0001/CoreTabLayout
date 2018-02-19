@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CoreTabLayout">
+        <attr name="passiveSingleItemDrawable" format="reference"/>
+        <attr name="selectedSingleItemDrawable" format="reference"/>
+        <attr name="passiveStartItemDrawable" format="reference"/>
+        <attr name="selectedStartItemDrawable" format="reference"/>
+        <attr name="passiveMiddleItemDrawable" format="reference"/>
+        <attr name="selectedMiddleItemDrawable" format="reference"/>
+        <attr name="passiveEndItemDrawable" format="reference"/>
+        <attr name="selectedEndItemDrawable" format="reference"/>
+
+        <attr name="passiveItemTextColor" format="color"/>
+        <attr name="selectedItemTextColor" format="color"/>
+        <attr name="passiveItemFilterColor" format="color"/>
+        <attr name="selectedItemFilterColor" format="color"/>
+        <attr name="passiveTextSize" format="dimension"/>
+        <attr name="selectedTextSize" format="dimension"/>
+    </declare-styleable>
+
+</resources>

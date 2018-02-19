@@ -3,6 +3,7 @@ package com.deepdroid.coretablayout;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -47,6 +48,25 @@ public class CoreTabLayout extends LinearLayout {
 
     private void init(Context context, AttributeSet attrs) {
         coreTabConfig = new CoreTabConfig(context.getResources());
+
+        // Obtain custom attributes.
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CoreTabLayout);
+        coreTabConfig.singleItemDrawable.passiveDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_passiveSingleItemDrawable, coreTabConfig.singleItemDrawable.passiveDrawableResId);
+        coreTabConfig.singleItemDrawable.selectedDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_selectedSingleItemDrawable, coreTabConfig.singleItemDrawable.selectedDrawableResId);
+        coreTabConfig.startItemDrawable.passiveDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_passiveStartItemDrawable, coreTabConfig.startItemDrawable.passiveDrawableResId);
+        coreTabConfig.startItemDrawable.selectedDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_selectedStartItemDrawable, coreTabConfig.startItemDrawable.selectedDrawableResId);
+        coreTabConfig.middleItemDrawable.passiveDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_passiveMiddleItemDrawable, coreTabConfig.middleItemDrawable.passiveDrawableResId);
+        coreTabConfig.middleItemDrawable.selectedDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_selectedMiddleItemDrawable, coreTabConfig.middleItemDrawable.selectedDrawableResId);
+        coreTabConfig.endItemDrawable.passiveDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_passiveEndItemDrawable, coreTabConfig.endItemDrawable.passiveDrawableResId);
+        coreTabConfig.endItemDrawable.selectedDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_selectedEndItemDrawable, coreTabConfig.endItemDrawable.selectedDrawableResId);
+        coreTabConfig.passiveTextColor = typedArray.getColor(R.styleable.CoreTabLayout_passiveItemTextColor, coreTabConfig.passiveTextColor);
+        coreTabConfig.selectedTextColor = typedArray.getColor(R.styleable.CoreTabLayout_selectedItemTextColor, coreTabConfig.selectedTextColor);
+        coreTabConfig.passiveFilterColor = typedArray.getColor(R.styleable.CoreTabLayout_passiveItemFilterColor, coreTabConfig.passiveFilterColor);
+        coreTabConfig.selectedFilterColor = typedArray.getColor(R.styleable.CoreTabLayout_selectedItemFilterColor, coreTabConfig.selectedFilterColor);
+        coreTabConfig.passiveTextSize = typedArray.getDimensionPixelSize(R.styleable.CoreTabLayout_passiveTextSize, coreTabConfig.passiveTextSize);
+        coreTabConfig.selectedTextSize = typedArray.getDimensionPixelSize(R.styleable.CoreTabLayout_selectedTextSize, coreTabConfig.selectedTextSize);
+        typedArray.recycle();
+
         if (isInEditMode()) {
             List<CoreTabItem> dummyItemList = new ArrayList<>();
             dummyItemList.add(new CoreTabItem("", "ItemStart"));
@@ -76,9 +96,8 @@ public class CoreTabLayout extends LinearLayout {
     // SET METHODS
     public void setTabConfig(CoreTabConfig tabConfig, boolean forceRedraw) {
         this.coreTabConfig = tabConfig;
-        if (forceRedraw) {
-            generateItems();
-            setSelectedItem(selectedItem.itemIndex);
+        if (forceRedraw && itemList != null && selectedItem != null) {
+            setItems(itemList, selectedItem.itemIndex);
         }
     }
 
@@ -96,6 +115,8 @@ public class CoreTabLayout extends LinearLayout {
     // =============================================================================================
     // ITEM GENERATION
     private void generateItems() {
+        removeAllViews();
+        animatorList = new ArrayList<>();
         for (CoreTabItem coreTabItem : itemList) {
             addView(generateItemWith(coreTabItem));
         }

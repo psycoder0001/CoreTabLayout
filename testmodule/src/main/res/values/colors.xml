@@ -3,4 +3,22 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Override tabLayout default color values-->
+    <color name="tabLayoutPassiveItemBgColor">#DD8833</color>
+    <color name="tabLayoutSelectedItemBgColor">#EE8833</color>
+    <color name="tabLayoutPassiveItemTextColor">#DD8833</color>
+    <color name="tabLayoutSelectedItemTextColor">#CCEECC</color>
+    <!--
+    <color name="tabLayoutPassiveItemFilterColor">#225522</color>
+    <color name="tabLayoutSelectedItemFilterColor">#22AA22</color>
+    -->
+
+
+    <color name="customPassiveItemBgColor">#28a</color>
+    <color name="customSelectedItemBgColor">#2bd</color>
+    <color name="customPassiveItemTextColor">#2bd</color>
+    <color name="customSelectedItemTextColor">#eee</color>
+    <color name="customPassiveItemFilterColor">#28a</color>
+    <color name="customSelectedItemFilterColor">#29b</color>
 </resources>

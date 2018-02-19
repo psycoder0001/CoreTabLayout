@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
-    private static final String ITEM_ID_START = "i0";
-    private static final String ITEM_ID_MIDDLE = "i1";
-    private static final String ITEM_ID_END = "i2";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

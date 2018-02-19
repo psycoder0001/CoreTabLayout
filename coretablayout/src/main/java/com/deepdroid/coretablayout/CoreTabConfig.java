@@ -51,8 +51,8 @@ public class CoreTabConfig {
             , CoreTabConfigBackgroundDrawable startItemBackgroundDrawable
             , CoreTabConfigBackgroundDrawable middleItemBackgroundDrawable
             , CoreTabConfigBackgroundDrawable endItemBackgroundDrawable
-            , int passiveFilterColor, int selectedFilterColor
-            , int passiveTextColor, int selectedTextColor
+            , @ColorInt int passiveFilterColor, @ColorInt int selectedFilterColor
+            , @ColorInt int passiveTextColor, @ColorInt int selectedTextColor
             , int passiveTextSize, int selectedTextSize) {
         this.singleItemBackgroundDrawable = singleItemBackgroundDrawable;
         this.startItemBackgroundDrawable = startItemBackgroundDrawable;

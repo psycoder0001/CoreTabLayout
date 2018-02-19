@@ -74,8 +74,12 @@ public class CoreTabLayout extends LinearLayout {
 
     // =============================================================================================
     // SET METHODS
-    public void setTabConfig(CoreTabConfig tabConfig) {
+    public void setTabConfig(CoreTabConfig tabConfig, boolean forceRedraw) {
         this.coreTabConfig = tabConfig;
+        if (forceRedraw) {
+            generateItems();
+            setSelectedItem(selectedItem.itemIndex);
+        }
     }
 
     public void setItems(List<CoreTabItem> itemList, int initialSelectionIndex) {

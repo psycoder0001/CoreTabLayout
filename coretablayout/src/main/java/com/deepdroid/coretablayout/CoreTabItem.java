@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 public class CoreTabItem {
 
-    public String itemText;
-    public String itemId;
-    boolean isSelected;
+    String itemText;
+    String itemId;
     int itemIndex;
+    boolean isSelected;
     CoreTabItemType coreTabItemType;
     TextView passiveItemTv;
     TextView selectedItemTv;
@@ -21,8 +21,28 @@ public class CoreTabItem {
         this.itemText = itemText;
     }
 
+    public String getItemId() {
+        return itemId;
+    }
+
+    public String getItemText() {
+        return itemText;
+    }
+
+    public int getItemIndex() {
+        return itemIndex;
+    }
+
     public boolean isSelected() {
         return isSelected;
+    }
+
+    public TextView getPassiveItemTv() {
+        return passiveItemTv;
+    }
+
+    public TextView getActiveItemTv() {
+        return selectedItemTv;
     }
 
     void setItemView(TextView itemView, boolean isPassive) {

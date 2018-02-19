@@ -1,5 +1,5 @@
 # CoreTabLayout
-This library contains a customizable tab layout with dynamic item size.
+This library contains a customizable tab layout with dynamic item count.
 ![Optional Text](../master/ss.png)
 
 **Features:**

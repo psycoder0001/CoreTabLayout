@@ -38,7 +38,7 @@ public class TestActivity extends AppCompatActivity {
 
         // # OPTIONAL - EXAMPLE CODES : Modify visual configurations
         // ( You can modify background drawable, color filter for the background, text color & size for passive & active views. )
-        modifyTabLayoutConfigProgrammatically(tabLayoutWithThreeItems);
+        modifyTabLayoutConfigProgrammatically(tabLayoutWithTwoItems);
     }
 
     // # OPTIONAL - EXAMPLE CODES : Generate dummy data.
@@ -56,8 +56,8 @@ public class TestActivity extends AppCompatActivity {
         // CoreTabConfig customTabConfig = new CoreTabConfig(getResources());
 
         // Or you can generate the config with a new set of values.
-        CoreTabConfig customTabConfig = new CoreTabConfig(
-                new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_single_item_drawable, R.drawable.core_tab_layout_selected_single_item_drawable)
+        CoreTabConfig customTabConfig = new CoreTabConfig(true
+                , new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_single_item_drawable, R.drawable.core_tab_layout_selected_single_item_drawable)
                 , new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_start_item_drawable, R.drawable.core_tab_layout_selected_start_item_drawable)
                 , new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_middle_item_drawable, R.drawable.core_tab_layout_selected_middle_item_drawable)
                 , new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_end_item_drawable, R.drawable.core_tab_layout_selected_end_item_drawable)

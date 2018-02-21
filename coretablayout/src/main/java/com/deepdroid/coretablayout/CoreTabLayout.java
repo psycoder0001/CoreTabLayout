@@ -31,6 +31,8 @@ public class CoreTabLayout extends LinearLayout {
     private CoreTabConfig coreTabConfig;
     private CoreTabItem selectedItem = null;
 
+    private boolean isInitialItemSelection = false;
+
     public CoreTabLayout(Context context) {
         super(context);
         init(context, null);
@@ -76,6 +78,10 @@ public class CoreTabLayout extends LinearLayout {
         }
     }
 
+    private boolean isAnimationsEnabled() {
+        return coreTabConfig == null || (coreTabConfig.isAnimationEnabled && !isInitialItemSelection);
+    }
+
     // =============================================================================================
     // GET METHODS
     public List<CoreTabItem> getItemList() {
@@ -107,7 +113,9 @@ public class CoreTabLayout extends LinearLayout {
         }
         this.itemList = itemList;
         generateItems();
+        isInitialItemSelection = true;
         setSelectedItem(initialSelectionIndex);
+        isInitialItemSelection = false;
     }
     // SET METHODS
     // =============================================================================================
@@ -218,6 +226,9 @@ public class CoreTabLayout extends LinearLayout {
     }
 
     private void clearAnimations() {
+        if (isAnimationsEnabled()) {
+            return;
+        }
         for (Animator animator : animatorList) {
             animator.cancel();
         }
@@ -245,7 +256,11 @@ public class CoreTabLayout extends LinearLayout {
         tabItem.selectedItemTv.clearAnimation();
         tabItem.selectedItemTv.setAlpha(0f);
         tabItem.selectedItemTv.setVisibility(VISIBLE);
-        ObjectAnimator.ofFloat(tabItem.selectedItemTv, ALPHA, 1f).start();
+        if (isAnimationsEnabled()) {
+            ObjectAnimator.ofFloat(tabItem.selectedItemTv, ALPHA, 1f).start();
+        } else {
+            tabItem.selectedItemTv.setAlpha(1);
+        }
         selectedItem = tabItem;
         if (itemSelectionListener != null) {
             itemSelectionListener.onItemSelected(selectedItem);
@@ -265,29 +280,34 @@ public class CoreTabLayout extends LinearLayout {
         tabItem.selectedItemTv.clearAnimation();
         tabItem.selectedItemTv.setAlpha(1f);
         tabItem.selectedItemTv.setVisibility(VISIBLE);
-        final Animator alphaAnim = ObjectAnimator.ofFloat(tabItem.selectedItemTv, ALPHA, 0f);
-        alphaAnim.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-            }
+        if (isAnimationsEnabled()) {
+            final Animator alphaAnim = ObjectAnimator.ofFloat(tabItem.selectedItemTv, ALPHA, 0f);
+            alphaAnim.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                }
 
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                tabItem.selectedItemTv.setVisibility(INVISIBLE);
-                tabItem.selectedItemTv.setAlpha(0f);
-                animatorList.remove(alphaAnim);
-            }
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    tabItem.selectedItemTv.setVisibility(INVISIBLE);
+                    tabItem.selectedItemTv.setAlpha(0f);
+                    animatorList.remove(alphaAnim);
+                }
 
-            @Override
-            public void onAnimationCancel(Animator animator) {
-            }
+                @Override
+                public void onAnimationCancel(Animator animator) {
+                }
 
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-            }
-        });
-        alphaAnim.start();
-        animatorList.add(alphaAnim);
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+                }
+            });
+            alphaAnim.start();
+            animatorList.add(alphaAnim);
+        } else {
+            tabItem.selectedItemTv.setVisibility(INVISIBLE);
+            tabItem.selectedItemTv.setAlpha(0);
+        }
     }
 
     public void setItemSelectionListener(CoreTabItemSelectionListener itemSelectionListener) {

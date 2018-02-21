@@ -9,6 +9,8 @@ import android.support.annotation.DrawableRes;
  */
 
 public class CoreTabConfig {
+    public boolean isAnimationEnabled = true;
+
     public CoreTabConfigBackgroundDrawable singleItemDrawable;
     public CoreTabConfigBackgroundDrawable startItemDrawable;
     public CoreTabConfigBackgroundDrawable middleItemDrawable;
@@ -47,13 +49,15 @@ public class CoreTabConfig {
         endItemDrawable = new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_end_item_drawable, R.drawable.core_tab_layout_selected_end_item_drawable);
     }
 
-    public CoreTabConfig(CoreTabConfigBackgroundDrawable singleItemDrawable
+    public CoreTabConfig(boolean isAnimationEnabled
+            , CoreTabConfigBackgroundDrawable singleItemDrawable
             , CoreTabConfigBackgroundDrawable startItemDrawable
             , CoreTabConfigBackgroundDrawable middleItemDrawable
             , CoreTabConfigBackgroundDrawable endItemDrawable
             , @ColorInt int passiveFilterColor, @ColorInt int selectedFilterColor
             , @ColorInt int passiveTextColor, @ColorInt int selectedTextColor
             , int passiveTextSize, int selectedTextSize) {
+        this.isAnimationEnabled = isAnimationEnabled;
         this.singleItemDrawable = singleItemDrawable;
         this.startItemDrawable = startItemDrawable;
         this.middleItemDrawable = middleItemDrawable;

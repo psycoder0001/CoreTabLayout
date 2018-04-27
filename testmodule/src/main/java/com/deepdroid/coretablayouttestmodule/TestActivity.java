@@ -26,12 +26,14 @@ public class TestActivity extends AppCompatActivity {
         CoreTabLayout tabLayoutWithTwoItems = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith2Items);
         CoreTabLayout tabLayoutWithThreeItems = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith3Items);
         CoreTabLayout tabLayoutWithFourItems = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith4Items);
+        CoreTabLayout tabLayoutWithThreeImages = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith3Images);
 
         // # ESSENTIAL : Set new tab items.
         tabLayoutWithSingleItem.setItems(getTestItems(1), 0);
         tabLayoutWithTwoItems.setItems(getTestItems(2), 1);
         tabLayoutWithThreeItems.setItems(getTestItems(3), 2);
         tabLayoutWithFourItems.setItems(getTestItems(4), 3);
+        tabLayoutWithThreeImages.setItems(getTestImages(3), 0);
 
         // # OPTIONAL - EXAMPLE CODES : Set item selection listener.
         tabLayoutWithSingleItem.setItemSelectionListener(itemSelectionListener);
@@ -39,6 +41,7 @@ public class TestActivity extends AppCompatActivity {
         // # OPTIONAL - EXAMPLE CODES : Modify visual configurations
         // ( You can modify background drawable, color filter for the background, text color & size for passive & active views. )
         modifyTabLayoutConfigProgrammatically(tabLayoutWithTwoItems);
+        modifyTabLayoutConfigParameterProgrammatically(tabLayoutWithThreeImages);
     }
 
     // # OPTIONAL - EXAMPLE CODES : Generate dummy data.
@@ -50,7 +53,16 @@ public class TestActivity extends AppCompatActivity {
         return itemList;
     }
 
-    // # OPTIONAL - EXAMPLE CODES : Customize tab layout visual configuration.
+    // # OPTIONAL - EXAMPLE CODES : Generate dummy data.
+    private List<CoreTabItem> getTestImages(int itemCount) {
+        List<CoreTabItem> itemList = new ArrayList<>();
+        for (int x = 0; x < itemCount; x++) {
+            itemList.add(new CoreTabItem(x + "", "").setImage(android.R.drawable.ic_menu_save));
+        }
+        return itemList;
+    }
+
+    // # OPTIONAL - EXAMPLE CODES : Customize tab layout visual configuration. ( whole configuration )
     private void modifyTabLayoutConfigProgrammatically(CoreTabLayout coreTabLayout) {
         // You can use default constructor & then change the config values one by one.
         // CoreTabConfig customTabConfig = new CoreTabConfig(getResources());
@@ -68,6 +80,14 @@ public class TestActivity extends AppCompatActivity {
 
         // Apply your new config values.
         coreTabLayout.setTabConfig(customTabConfig, true);
+    }
+
+    // # OPTIONAL - EXAMPLE CODES : Customize tab layout visual configuration. ( single param )
+    private void modifyTabLayoutConfigParameterProgrammatically(CoreTabLayout coreTabLayout) {
+        // Modify single property of config object.
+        CoreTabConfig modifiedTabLayoutConfig = coreTabLayout.getCoreTabConfig();
+        modifiedTabLayoutConfig.passiveItemPadding = getResources().getDimensionPixelSize(R.dimen.tabLayoutPassiveItemPadding) * 2;
+        coreTabLayout.setTabConfig(modifiedTabLayoutConfig, true);
     }
 
     // # OPTIONAL - EXAMPLE CODES : Item selection listener

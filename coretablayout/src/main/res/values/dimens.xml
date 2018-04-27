@@ -3,4 +3,6 @@
     <dimen name="tabLayoutSelectedTextSize">14sp</dimen>
     <dimen name="tabLayoutItemHeight">35dp</dimen>
     <dimen name="tabLayoutItemRadius">50dp</dimen>
+    <dimen name="tabLayoutPassiveItemPadding">4dp</dimen>
+    <dimen name="tabLayoutSelectedItemPadding">1dp</dimen>
 </resources>

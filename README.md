@@ -36,9 +36,17 @@ II.B. Set the items in your java codes.
 ```java
     CoreTabLayout testCoreTabLayout = (CoreTabLayout) findViewById(R.id.testCoreTabLayout);
     List<CoreTabItem> itemList = new ArrayList<>();
+
+    // TEXT ITEMS
     itemList.add(new CoreTabItem("itemId0", "ItemLabel 0"));
     itemList.add(new CoreTabItem("itemId1", "ItemLabel 1"));
     itemList.add(new CoreTabItem("itemId2", "ItemLabel 2"));
+
+    // IMAGE ITEMS
+    // itemList.add(new CoreTabItem("itemId0", "").setImage(android.R.drawable.ic_menu_save)); // Item text must be empty...
+    // itemList.add(new CoreTabItem("itemId1", "").setImage(android.R.drawable.ic_menu_save));
+    // itemList.add(new CoreTabItem("itemId2", "").setImage(android.R.drawable.ic_menu_save));
+
     testCoreTabLayout.setItems(itemList, initialSelectedItemIndex);
     testCoreTabLayout.setItemSelectionListener(new CoreTabItemSelectionListener() {
         @Override

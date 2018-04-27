@@ -27,6 +27,8 @@ public class CoreTabConfig {
 
     public int passiveTextSize;
     public int selectedTextSize;
+    public int passiveItemPadding;
+    public int selectedItemPadding;
 
     public CoreTabConfig(Resources resources) {
         try {
@@ -42,6 +44,9 @@ public class CoreTabConfig {
 
         passiveTextSize = resources.getDimensionPixelSize(R.dimen.tabLayoutPassiveTextSize);
         selectedTextSize = resources.getDimensionPixelSize(R.dimen.tabLayoutSelectedTextSize);
+
+        passiveItemPadding = resources.getDimensionPixelSize(R.dimen.tabLayoutPassiveItemPadding);
+        selectedItemPadding = resources.getDimensionPixelSize(R.dimen.tabLayoutSelectedItemPadding);
 
         singleItemDrawable = new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_single_item_drawable, R.drawable.core_tab_layout_selected_single_item_drawable);
         startItemDrawable = new CoreTabConfigBackgroundDrawable(R.drawable.core_tab_layout_passive_start_item_drawable, R.drawable.core_tab_layout_selected_start_item_drawable);
@@ -72,6 +77,10 @@ public class CoreTabConfig {
 
     public float getTextSize(boolean isPassive) {
         return isPassive ? passiveTextSize : selectedTextSize;
+    }
+
+    public int getItemPadding(boolean isPassive) {
+        return isPassive ? passiveItemPadding : selectedItemPadding;
     }
 
     @ColorInt

@@ -44,4 +44,17 @@
     <!--app:selectedStartItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedMiddleItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedEndItemDrawable="@drawable/yourDrawable"-->
+
+    <com.deepdroid.coretablayout.CoreTabLayout
+        android:id="@+id/testCoreTabLayoutWith3Images"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:passiveItemFilterColor="#555"
+        app:passiveItemTextColor="#0af"
+        app:passiveTextSize="13sp"
+        app:selectedItemFilterColor="#AAA"
+        app:selectedItemTextColor="#08d"
+        app:selectedTextSize="14sp"/>
 </LinearLayout>

@@ -1,5 +1,8 @@
 package com.deepdroid.coretablayout;
 
+import android.support.annotation.DrawableRes;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -12,9 +15,12 @@ public class CoreTabItem {
     String itemId;
     int itemIndex;
     boolean isSelected;
+    int imgRes;
     CoreTabItemType coreTabItemType;
-    TextView passiveItemTv;
-    TextView selectedItemTv;
+    private TextView passiveItemTv;
+    private TextView selectedItemTv;
+    private ImageView passiveItemImg;
+    private ImageView selectedItemImg;
 
     public CoreTabItem(String itemId, String itemText) {
         this.itemId = itemId;
@@ -36,20 +42,33 @@ public class CoreTabItem {
     public boolean isSelected() {
         return isSelected;
     }
-
-    public TextView getPassiveItemTv() {
-        return passiveItemTv;
-    }
-
-    public TextView getActiveItemTv() {
-        return selectedItemTv;
-    }
-
-    void setItemView(TextView itemView, boolean isPassive) {
+    
+    void setItemView(View itemView, boolean isPassive) {
         if (isPassive) {
-            passiveItemTv = itemView;
+            if (itemView instanceof TextView) {
+                passiveItemTv = (TextView) itemView;
+            } else {
+                passiveItemImg = (ImageView) itemView;
+            }
         } else {
-            selectedItemTv = itemView;
+            if (itemView instanceof TextView) {
+                selectedItemTv = (TextView) itemView;
+            } else {
+                selectedItemImg = (ImageView) itemView;
+            }
         }
+    }
+
+    public View getSelectedItemView() {
+        return selectedItemTv != null ? selectedItemTv : selectedItemImg;
+    }
+
+    public View getPassiveItemView() {
+        return passiveItemTv != null ? passiveItemTv : passiveItemImg;
+    }
+
+    public CoreTabItem setImage(@DrawableRes int imgRes) {
+        this.imgRes = imgRes;
+        return this;
     }
 }

@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -100,7 +102,14 @@ public class CoreTabLayout extends LinearLayout {
 
     // =============================================================================================
     // SET METHODS
+    public CoreTabConfig getCoreTabConfig() {
+        return coreTabConfig;
+    }
+
     public void setTabConfig(CoreTabConfig tabConfig, boolean forceRedraw) {
+        if (tabConfig == null) {
+            return;
+        }
         this.coreTabConfig = tabConfig;
         if (forceRedraw && itemList != null && selectedItem != null) {
             setItems(itemList, selectedItem.itemIndex);
@@ -150,24 +159,30 @@ public class CoreTabLayout extends LinearLayout {
 
         // Generate item parent
         RelativeLayout itemView = new RelativeLayout(getContext());
-        itemView.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1));
+        itemView.setLayoutParams(new LayoutParams(0, getLayoutParams().height, 1));
         itemView.setClipChildren(false);
         itemView.setClipToPadding(false);
-        itemView.addView(coreTabItem.passiveItemTv);
-        itemView.addView(coreTabItem.selectedItemTv);
+        itemView.addView(coreTabItem.getPassiveItemView());
+        itemView.addView(coreTabItem.getSelectedItemView());
         return itemView;
     }
 
     private void generateItemViewWith(CoreTabItem coreTabItem, boolean isPassive) {
-        TextView itemView = new TextView(getContext());
-        itemView.setGravity(Gravity.CENTER);
+        View itemView;
+        if (TextUtils.isEmpty(coreTabItem.itemText)) {
+            itemView = new ImageView(getContext());
+            ((ImageView) itemView).setScaleType(ImageView.ScaleType.FIT_CENTER);
+        } else {
+            itemView = new TextView(getContext());
+            ((TextView) itemView).setGravity(Gravity.CENTER);
+        }
         setItemSelectionListener(itemView, coreTabItem);
-        itemView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        itemView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getLayoutParams().height));
         coreTabItem.setItemView(itemView, isPassive);
         customizeItemView(itemView, coreTabItem, isPassive);
     }
 
-    private void setItemSelectionListener(TextView itemView, final CoreTabItem coreTabItem) {
+    private void setItemSelectionListener(View itemView, final CoreTabItem coreTabItem) {
         itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,15 +191,24 @@ public class CoreTabLayout extends LinearLayout {
         });
     }
 
-    private void customizeItemView(TextView itemView, CoreTabItem coreTabItem, boolean isPassive) {
-        itemView.setText(coreTabItem.itemText);
-        itemView.setTextSize(TypedValue.COMPLEX_UNIT_PX, coreTabConfig.getTextSize(isPassive));
-        itemView.setTextColor(coreTabConfig.getTextColor(isPassive));
+    private void customizeItemView(View itemView, CoreTabItem coreTabItem, boolean isPassive) {
+        if (itemView instanceof TextView) {
+            ((TextView) itemView).setText(coreTabItem.itemText);
+            ((TextView) itemView).setTextSize(TypedValue.COMPLEX_UNIT_PX, coreTabConfig.getTextSize(isPassive));
+            ((TextView) itemView).setTextColor(coreTabConfig.getTextColor(isPassive));
+        } else {
+            ((ImageView) itemView).setImageResource(coreTabItem.imgRes);
+            ((ImageView) itemView).getDrawable().mutate().setColorFilter(coreTabConfig.getTextColor(isPassive), PorterDuff.Mode.SRC_IN);
+        }
+        itemView.setPadding(coreTabConfig.getItemPadding(isPassive)
+                , coreTabConfig.getItemPadding(isPassive)
+                , coreTabConfig.getItemPadding(isPassive)
+                , coreTabConfig.getItemPadding(isPassive));
         itemView.setBackgroundResource(coreTabConfig.getBackgroundDrawableResId(isPassive, coreTabItem.coreTabItemType));
         filterBackgroundColor(itemView, isPassive);
     }
 
-    private void filterBackgroundColor(TextView itemView, boolean isPassive) {
+    private void filterBackgroundColor(View itemView, boolean isPassive) {
         int filterColor = coreTabConfig.getBackgroundFilterColor(isPassive);
         if (filterColor == 0) {
             return;
@@ -245,21 +269,21 @@ public class CoreTabLayout extends LinearLayout {
 
     private void selectItem(CoreTabItem tabItem) {
         if (isInEditMode()) {
-            tabItem.selectedItemTv.setVisibility(VISIBLE);
+            tabItem.getSelectedItemView().setVisibility(VISIBLE);
             return;
         }
-        if (tabItem.selectedItemTv.getAlpha() == 1f && tabItem.selectedItemTv.getVisibility() == VISIBLE && tabItem.isSelected) {
+        if (tabItem.getSelectedItemView().getAlpha() == 1f && tabItem.getSelectedItemView().getVisibility() == VISIBLE && tabItem.isSelected) {
             // Already selected.
             return;
         }
         tabItem.isSelected = true;
-        tabItem.selectedItemTv.clearAnimation();
-        tabItem.selectedItemTv.setAlpha(0f);
-        tabItem.selectedItemTv.setVisibility(VISIBLE);
+        tabItem.getSelectedItemView().clearAnimation();
+        tabItem.getSelectedItemView().setAlpha(0f);
+        tabItem.getSelectedItemView().setVisibility(VISIBLE);
         if (isAnimationsEnabled()) {
-            ObjectAnimator.ofFloat(tabItem.selectedItemTv, ALPHA, 1f).start();
+            ObjectAnimator.ofFloat(tabItem.getSelectedItemView(), ALPHA, 1f).start();
         } else {
-            tabItem.selectedItemTv.setAlpha(1);
+            tabItem.getSelectedItemView().setAlpha(1);
         }
         selectedItem = tabItem;
         if (itemSelectionListener != null) {
@@ -269,19 +293,19 @@ public class CoreTabLayout extends LinearLayout {
 
     private void deselectItem(final CoreTabItem tabItem) {
         if (isInEditMode()) {
-            tabItem.selectedItemTv.setVisibility(GONE);
+            tabItem.getSelectedItemView().setVisibility(GONE);
             return;
         }
-        if (tabItem.selectedItemTv.getVisibility() == INVISIBLE) {
+        if (tabItem.getSelectedItemView().getVisibility() == INVISIBLE) {
             // Not selected.
             return;
         }
         tabItem.isSelected = false;
-        tabItem.selectedItemTv.clearAnimation();
-        tabItem.selectedItemTv.setAlpha(1f);
-        tabItem.selectedItemTv.setVisibility(VISIBLE);
+        tabItem.getSelectedItemView().clearAnimation();
+        tabItem.getSelectedItemView().setAlpha(1f);
+        tabItem.getSelectedItemView().setVisibility(VISIBLE);
         if (isAnimationsEnabled()) {
-            final Animator alphaAnim = ObjectAnimator.ofFloat(tabItem.selectedItemTv, ALPHA, 0f);
+            final Animator alphaAnim = ObjectAnimator.ofFloat(tabItem.getSelectedItemView(), ALPHA, 0f);
             alphaAnim.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -289,8 +313,8 @@ public class CoreTabLayout extends LinearLayout {
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    tabItem.selectedItemTv.setVisibility(INVISIBLE);
-                    tabItem.selectedItemTv.setAlpha(0f);
+                    tabItem.getSelectedItemView().setVisibility(INVISIBLE);
+                    tabItem.getSelectedItemView().setAlpha(0f);
                     animatorList.remove(alphaAnim);
                 }
 
@@ -305,8 +329,8 @@ public class CoreTabLayout extends LinearLayout {
             alphaAnim.start();
             animatorList.add(alphaAnim);
         } else {
-            tabItem.selectedItemTv.setVisibility(INVISIBLE);
-            tabItem.selectedItemTv.setAlpha(0);
+            tabItem.getSelectedItemView().setVisibility(INVISIBLE);
+            tabItem.getSelectedItemView().setAlpha(0);
         }
     }
 

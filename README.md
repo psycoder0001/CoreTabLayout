@@ -118,4 +118,7 @@ III.C. Customize by overriding xml values
     <dimen name="tabLayoutSelectedTextSize">10sp</dimen>
     <dimen name="tabLayoutItemHeight">40dp</dimen>
     <dimen name="tabLayoutItemRadius">50dp</dimen>
+    <dimen name="tabLayoutItemBorderThickness">1dp</dimen>
+    <dimen name="tabLayoutPassiveItemPadding">2dp</dimen>
+    <dimen name="tabLayoutSelectedItemPadding">0dp</dimen>
 ```

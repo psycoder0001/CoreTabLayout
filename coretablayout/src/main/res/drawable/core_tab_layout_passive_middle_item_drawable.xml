@@ -4,10 +4,10 @@
         android:left="-1dp"
         android:right="-1dp">
         <shape android:shape="rectangle">
-            <size android:height="@dimen/tabLayoutItemHeight"/>
+            <size android:height="@dimen/tabLayoutItemHeight" />
             <stroke
-                android:width="2dp"
-                android:color="@color/tabLayoutPassiveItemBgColor"/>
+                android:width="@dimen/tabLayoutItemBorderThickness"
+                android:color="@color/tabLayoutPassiveItemBgColor" />
         </shape>
     </item>
 </layer-list>

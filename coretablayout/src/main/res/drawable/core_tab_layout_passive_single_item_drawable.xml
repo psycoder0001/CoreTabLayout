@@ -3,7 +3,7 @@
     <item>
         <shape android:shape="rectangle">
             <stroke
-                android:width="2dp"
+                android:width="@dimen/tabLayoutItemBorderThickness"
                 android:color="@color/tabLayoutPassiveItemBgColor"/>
             <size android:height="@dimen/tabLayoutItemHeight"/>
             <corners android:radius="@dimen/tabLayoutItemRadius"/>

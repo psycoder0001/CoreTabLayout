@@ -18,7 +18,7 @@ allprojects {
 
 I.B. Add next line in modules build.gradle file:
 ```
-    implementation 'com.deepdroid.coretablayout:coretablayout:1.0.2'
+    implementation 'com.deepdroid.coretablayout:coretablayout:1.0.7'
 ```
 
 ### II. How to use?

@@ -274,6 +274,7 @@ public class CoreTabLayout extends LinearLayout {
         }
         if (tabItem.getSelectedItemView().getAlpha() == 1f && tabItem.getSelectedItemView().getVisibility() == VISIBLE && tabItem.isSelected) {
             // Already selected.
+            selectedItem = tabItem;
             return;
         }
         tabItem.isSelected = true;

@@ -250,7 +250,7 @@ public class CoreTabLayout extends LinearLayout {
     }
 
     private void clearAnimations() {
-        if (isAnimationsEnabled()) {
+        if (!isAnimationsEnabled()) {
             return;
         }
         for (Animator animator : animatorList) {

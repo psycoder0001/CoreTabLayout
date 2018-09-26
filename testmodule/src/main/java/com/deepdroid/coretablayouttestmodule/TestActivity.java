@@ -22,11 +22,11 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         // # ESSENTIAL : Find views.
-        CoreTabLayout tabLayoutWithSingleItem = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith1Item);
-        CoreTabLayout tabLayoutWithTwoItems = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith2Items);
-        CoreTabLayout tabLayoutWithThreeItems = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith3Items);
-        CoreTabLayout tabLayoutWithFourItems = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith4Items);
-        CoreTabLayout tabLayoutWithThreeImages = (CoreTabLayout) findViewById(R.id.testCoreTabLayoutWith3Images);
+        CoreTabLayout tabLayoutWithSingleItem = findViewById(R.id.testCoreTabLayoutWith1Item);
+        CoreTabLayout tabLayoutWithTwoItems = findViewById(R.id.testCoreTabLayoutWith2Items);
+        CoreTabLayout tabLayoutWithThreeItems = findViewById(R.id.testCoreTabLayoutWith3Items);
+        CoreTabLayout tabLayoutWithFourItems = findViewById(R.id.testCoreTabLayoutWith4Items);
+        CoreTabLayout tabLayoutWithThreeImages = findViewById(R.id.testCoreTabLayoutWith3Images);
 
         // # ESSENTIAL : Set new tab items.
         tabLayoutWithSingleItem.setItems(getTestItems(1), 0);

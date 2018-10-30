@@ -117,13 +117,23 @@ public class CoreTabLayout extends LinearLayout {
     }
 
     public void setItems(List<CoreTabItem> itemList, int initialSelectionIndex) {
+        setItems(itemList, initialSelectionIndex, null, false);
+    }
+
+    public void setItems(List<CoreTabItem> itemList, int initialSelectionIndex, CoreTabItemSelectionListener listener, boolean shouldTriggerListener) {
         if (itemList == null || itemList.isEmpty()) {
             return;
         }
         this.itemList = itemList;
         generateItems();
         isInitialItemSelection = true;
+        if (shouldTriggerListener && listener != null) {
+            this.itemSelectionListener = listener;
+        }
         setSelectedItem(initialSelectionIndex);
+        if (!shouldTriggerListener && listener != null) {
+            this.itemSelectionListener = listener;
+        }
         isInitialItemSelection = false;
     }
     // SET METHODS

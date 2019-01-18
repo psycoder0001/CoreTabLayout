@@ -40,7 +40,8 @@ android {
     defaultConfig {
         minSdkVersion project.ANDROID_MIN_SDK_VERSION
         targetSdkVersion project.ANDROID_TARGET_SDK_VERSION
-        versionCode Integer.valueOf(project.CURRENT_MAJOR_VERSION + project.CURRENT_MINOR_VERSION + project.CURRENT_UPLOAD_VERSION)
+        versionCode Integer.valueOf(project.VERSION_CODE)
+        versionName project.VERSION_NAME
     }
 
     buildTypes {
@@ -53,9 +54,9 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api "com.android.support:appcompat-v7:${project.support_v7_version}"
-    api "com.android.support:support-v4:${project.support_v4_version}"
-    api "com.android.support:design:${project.support_v7_version}"
+    api "com.android.support:appcompat-v7:${project.support_version}"
+    api "com.android.support:support-v4:${project.support_version}"
+    api "com.android.support:design:${project.support_version}"
 }
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

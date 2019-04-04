@@ -1,31 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#222"
-              android:gravity="center_horizontal"
-              android:orientation="vertical"
-              android:padding="50dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#222"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="50dp">
 
     <com.deepdroid.coretablayout.CoreTabLayout
         android:id="@+id/testCoreTabLayoutWith1Item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
     <com.deepdroid.coretablayout.CoreTabLayout
         android:id="@+id/testCoreTabLayoutWith2Items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
     <com.deepdroid.coretablayout.CoreTabLayout
         android:id="@+id/testCoreTabLayoutWith3Items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
     <!--// # OPTIONAL - EXAMPLE CODES : Customize tab layout visual configuration with attributes-->
     <com.deepdroid.coretablayout.CoreTabLayout
@@ -39,11 +39,12 @@
         app:passiveTextSize="13sp"
         app:selectedItemFilterColor="#AAA"
         app:selectedItemTextColor="#08d"
-        app:selectedTextSize="14sp"/>
+        app:selectedTextSize="14sp" />
     <!--app:selectedSingleItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedStartItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedMiddleItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedEndItemDrawable="@drawable/yourDrawable"-->
+    <!--app:customItemResId="@layout/custom_core_tab_layout_item"-->
 
     <com.deepdroid.coretablayout.CoreTabLayout
         android:id="@+id/testCoreTabLayoutWith3Images"
@@ -56,5 +57,19 @@
         app:passiveTextSize="13sp"
         app:selectedItemFilterColor="#AAA"
         app:selectedItemTextColor="#08d"
-        app:selectedTextSize="14sp"/>
+        app:selectedTextSize="14sp" />
+
+    <com.deepdroid.coretablayout.CoreTabLayout
+        android:id="@+id/testCoreTabLayoutWith3CustomItems"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:customItemResId="@layout/custom_core_tab_layout_item"
+        app:passiveItemFilterColor="#062"
+        app:passiveItemTextColor="#999"
+        app:passiveTextSize="13sp"
+        app:selectedItemFilterColor="#0b2"
+        app:selectedItemTextColor="#eee"
+        app:selectedTextSize="14sp" />
 </LinearLayout>

@@ -27,6 +27,7 @@ public class TestActivity extends AppCompatActivity {
         CoreTabLayout tabLayoutWithThreeItems = findViewById(R.id.testCoreTabLayoutWith3Items);
         CoreTabLayout tabLayoutWithFourItems = findViewById(R.id.testCoreTabLayoutWith4Items);
         CoreTabLayout tabLayoutWithThreeImages = findViewById(R.id.testCoreTabLayoutWith3Images);
+        CoreTabLayout tabLayoutWithThreeCustomItems = findViewById(R.id.testCoreTabLayoutWith3CustomItems);
 
         // # ESSENTIAL : Set new tab items.
         tabLayoutWithSingleItem.setItems(getTestItems(1), 0);
@@ -34,6 +35,7 @@ public class TestActivity extends AppCompatActivity {
         tabLayoutWithThreeItems.setItems(getTestItems(3), 2);
         tabLayoutWithFourItems.setItems(getTestItems(4), 3);
         tabLayoutWithThreeImages.setItems(getTestImages(3), 0);
+        tabLayoutWithThreeCustomItems.setItems(getTestItems(3), 0);
 
         // # OPTIONAL - EXAMPLE CODES : Set item selection listener.
         tabLayoutWithSingleItem.setItemSelectionListener(itemSelectionListener);

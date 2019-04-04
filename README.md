@@ -18,7 +18,7 @@ allprojects {
 
 I.B. Add next line in modules build.gradle file:
 ```
-    implementation 'com.deepdroid.coretablayout:coretablayout:1.0.9'
+    implementation 'com.deepdroid.coretablayout:coretablayout:1.0.12'
 ```
 
 ### II. How to use?
@@ -75,6 +75,7 @@ III.A. Customize through the xml attributes
     <!--app:selectedStartItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedMiddleItemDrawable="@drawable/yourDrawable"-->
     <!--app:selectedEndItemDrawable="@drawable/yourDrawable"-->
+    <!--app:customItemResId="@layout/custom_core_tab_layout_item" // Add custom layout as an item : So you can use your own font with desired style ( bold, italic, etc.)-->
 ```
 
 III.B. Customize through the java codes

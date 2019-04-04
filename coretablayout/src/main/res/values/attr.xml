@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CoreTabLayout">
+        <attr name="customItemResId" format="reference"/>
         <attr name="passiveSingleItemDrawable" format="reference"/>
         <attr name="selectedSingleItemDrawable" format="reference"/>
         <attr name="passiveStartItemDrawable" format="reference"/>

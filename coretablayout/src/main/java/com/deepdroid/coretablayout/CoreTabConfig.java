@@ -3,6 +3,7 @@ package com.deepdroid.coretablayout;
 import android.content.res.Resources;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 
 /**
  * Created by KOZMOS on 2/18/2018.
@@ -16,6 +17,8 @@ public class CoreTabConfig {
     public CoreTabConfigBackgroundDrawable middleItemDrawable;
     public CoreTabConfigBackgroundDrawable endItemDrawable;
 
+    public @LayoutRes
+    int customItemResId;
     public @ColorInt
     int passiveFilterColor;
     public @ColorInt

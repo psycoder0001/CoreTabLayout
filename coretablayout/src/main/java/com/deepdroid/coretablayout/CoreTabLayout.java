@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import java.util.List;
  * Created by KOZMOS on 2/18/2018.
  */
 
+@SuppressWarnings("unused")
 public class CoreTabLayout extends LinearLayout {
 
     private List<Animator> animatorList = new ArrayList<>();
@@ -55,6 +57,7 @@ public class CoreTabLayout extends LinearLayout {
 
         // Obtain custom attributes.
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CoreTabLayout);
+        coreTabConfig.customItemResId = typedArray.getResourceId(R.styleable.CoreTabLayout_customItemResId, 0);
         coreTabConfig.singleItemDrawable.passiveDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_passiveSingleItemDrawable, coreTabConfig.singleItemDrawable.passiveDrawableResId);
         coreTabConfig.singleItemDrawable.selectedDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_selectedSingleItemDrawable, coreTabConfig.singleItemDrawable.selectedDrawableResId);
         coreTabConfig.startItemDrawable.passiveDrawableResId = typedArray.getResourceId(R.styleable.CoreTabLayout_passiveStartItemDrawable, coreTabConfig.startItemDrawable.passiveDrawableResId);
@@ -179,12 +182,22 @@ public class CoreTabLayout extends LinearLayout {
 
     private void generateItemViewWith(CoreTabItem coreTabItem, boolean isPassive) {
         View itemView;
-        if (TextUtils.isEmpty(coreTabItem.itemText)) {
+        if (coreTabConfig.customItemResId != 0) {
+            // Inflate custom layout item
+            itemView = LayoutInflater.from(getContext()).inflate(coreTabConfig.customItemResId, null, false);
+        } else if (TextUtils.isEmpty(coreTabItem.itemText)) {
+            // Generate image view item
             itemView = new ImageView(getContext());
-            ((ImageView) itemView).setScaleType(ImageView.ScaleType.FIT_CENTER);
         } else {
+            // Generate text view item
             itemView = new TextView(getContext());
+        }
+
+        // Set base parameters
+        if (itemView instanceof TextView) {
             ((TextView) itemView).setGravity(Gravity.CENTER);
+        } else if (itemView instanceof ImageView) {
+            ((ImageView) itemView).setScaleType(ImageView.ScaleType.FIT_CENTER);
         }
         setItemSelectionListener(itemView, coreTabItem);
         itemView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getLayoutParams().height));

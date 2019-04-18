@@ -130,11 +130,12 @@ public class CoreTabLayout extends LinearLayout {
         this.itemList = itemList;
         generateItems();
         isInitialItemSelection = true;
-        if (shouldTriggerListener && listener != null) {
+        if (shouldTriggerListener) {
             this.itemSelectionListener = listener;
-        }
-        setSelectedItem(initialSelectionIndex);
-        if (!shouldTriggerListener && listener != null) {
+            setSelectedItem(initialSelectionIndex);
+        } else {
+            this.itemSelectionListener = null;
+            setSelectedItem(initialSelectionIndex);
             this.itemSelectionListener = listener;
         }
         isInitialItemSelection = false;
@@ -200,7 +201,8 @@ public class CoreTabLayout extends LinearLayout {
             ((ImageView) itemView).setScaleType(ImageView.ScaleType.FIT_CENTER);
         }
         setItemSelectionListener(itemView, coreTabItem);
-        itemView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getLayoutParams().height));
+        int childHeight = getLayoutParams().height;
+        itemView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, childHeight));
         coreTabItem.setItemView(itemView, isPassive);
         customizeItemView(itemView, coreTabItem, isPassive);
     }
